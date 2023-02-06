@@ -1,6 +1,6 @@
 package com.example.marketplaceapi;
 
-import com.example.marketplaceapi.database.UserRepository;
+import com.example.marketplaceapi.database.*;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,10 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MarketplaceApiApplication implements CommandLineRunner {
 	// collections and variables
 	public UserRepository userRepository;
+	public ActiveListingRepository activeListingRepository;
+	public CompletedListingRepository completedListingRepository;
 
 	@Autowired
-	void AppApplication(UserRepository userRepository){
+	void AppApplication(UserRepository userRepository, ActiveListingRepository activeListingRepository, CompletedListingRepository completedListingRepository){
 		this.userRepository = userRepository;
+		this.activeListingRepository = activeListingRepository;
+		this.completedListingRepository = completedListingRepository;
 	}
 
 
@@ -29,8 +33,19 @@ public class MarketplaceApiApplication implements CommandLineRunner {
 
 
 	public void run(String... args) throws Exception{
+		System.out.println("Users: ");
 		for(User user : userRepository.findAll()){
-			System.out.println(user.toString());
+			System.out.print(user.toString());
+		}
+
+		System.out.println("Active Listings: ");
+		for (ActiveListing activeListing : activeListingRepository.findAll()){
+			System.out.print(activeListing.toString());
+		}
+
+		System.out.println("Completed Listings: ");
+		for (CompletedListing completedListing : completedListingRepository.findAll()){
+			System.out.print(completedListing.toString());
 		}
 	}
 
