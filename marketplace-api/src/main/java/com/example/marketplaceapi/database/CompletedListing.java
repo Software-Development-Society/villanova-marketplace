@@ -14,7 +14,7 @@ public class CompletedListing {
     @Id
     private ObjectId listing_id;
 
-    @Id
+    @Field
     private ObjectId transaction_id;
 
     @Field
