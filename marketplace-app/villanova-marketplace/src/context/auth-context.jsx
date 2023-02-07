@@ -8,6 +8,10 @@ const AuthContext = createContext({
         userId: '',
         name: '',
         email: '',
+        classYear: 0,
+        major: '',
+        wishList: [],
+        registrationComplete: false
     },
     isLoggedIn: false,
     login: (token, userData) => {},

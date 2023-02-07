@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import AuthContext from './context/auth-context';
 import Login from './pages/Login/Login';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   //This dictates whether or not the user is logged in. 
@@ -11,8 +12,10 @@ function App() {
 
   return (
     <div className="App">
-      {authCtx.isLoggedIn ? <h1>You are logged in</h1> : <h1>You are not logged in</h1>}
-      <Login></Login>
+        <Routes>
+          <Route path='/' element={authCtx.isLoggedIn ? <h1>You are logged in</h1> : <h1>You are not logged in</h1>} />
+          <Route path='/login' element={<Login></Login>} />
+        </Routes>
     </div>
   )
 }

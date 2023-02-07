@@ -35,13 +35,13 @@ const Login = (props) =>{
     
     const authCtx = useRef(useContext(AuthContext));
     const navigate = useRef(useNavigate());
+    const [contextHolder, setContextHolder] = useState(authCtx.current.userData);
     
     useEffect(() => {
         if(tokenParams.get("failed")){
             setFailedAuth(true);
         }
     }, [tokenParams]);
-    
     useEffect(() => {
         let token = tokenParams.get("token");
         if(token){
@@ -64,10 +64,19 @@ const Login = (props) =>{
                     //console.log(responseJson);
                     if(responseJson.email){
                         const token = responseJson.token;
-                        const userData = {userId: responseJson.userId, email: responseJson.email, name:responseJson.name};
-                        //console.log(userData, "here")
+                        const userData = {
+                            userId: responseJson.userId, 
+                            email: responseJson.email, 
+                            name:responseJson.name,
+                            classYear: responseJson.classYear,
+                            major: responseJson.major,
+                            wishList: responseJson.wishList,
+                            registrationComplete: responseJson.registrationComplete
+                        };
+                        console.log(userData, "here")
                         authCtx.current.login(token, userData);
-                        navigate.current('/');
+                        setContextHolder(authCtx.current.userData);
+                        navigate.current('/login');
                         // if(firstTime){
                         //     navigate.current('/dashboard?f=true');
                         // } else {
@@ -88,6 +97,7 @@ const Login = (props) =>{
                 {!isLoading ? <MicrosoftLoginButton onClick={loginHandler}></MicrosoftLoginButton> : <Triangle wrapperStyle={{justifyContent:'center'}} height='200' width='200' color='white'></Triangle>}
                 {failedAuth && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>You are not in the @villanova.edu domain and have not been authorized.<br></br><br></br>If this is an error, contact me using the button below.</p>}
                 {error && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>There has been an error, please try again.<br></br><br></br>If this continues, please contact me using the button below.</p>}
+                <p>{JSON.stringify(contextHolder)}</p>
             </div>
         </div>
     )
