@@ -14,6 +14,11 @@ public class MarketplaceApiApplication implements CommandLineRunner {
 	public ActiveListingRepository activeListingRepository;
 	public CompletedListingRepository completedListingRepository;
 
+	public static UserRepository visableUserRepo;
+	public static ActiveListingRepository visableActiveListingRepo;
+	public static CompletedListingRepository visableCompletedListingRepo;
+
+
 	@Autowired
 	void AppApplication(UserRepository userRepository, ActiveListingRepository activeListingRepository, CompletedListingRepository completedListingRepository){
 		this.userRepository = userRepository;
@@ -33,6 +38,13 @@ public class MarketplaceApiApplication implements CommandLineRunner {
 
 
 	public void run(String... args) throws Exception{
+		// initialize visable collecitons
+		visableUserRepo = userRepository;
+		visableActiveListingRepo = activeListingRepository;
+		visableCompletedListingRepo = completedListingRepository;
+
+
+
 		System.out.println("Users: ");
 		for(User user : userRepository.findAll()){
 			System.out.print(user.toString());
