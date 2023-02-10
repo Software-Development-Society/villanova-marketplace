@@ -74,6 +74,10 @@ public class User {
         this.wishList = wishList;
     }
 
+    public ObjectId getUser_id(){
+        return this.user_id;
+    }
+
 
 
 
