@@ -75,4 +75,21 @@ public class CompletedListing {
         this.soldToId = soldToId;
         this.dateSold = dateSold;
     }
+
+
+    // example get method
+
+    public ObjectId getListing_id() {
+        return listing_id;
+    }
+    // add get methods here
+
+
+
+
+    // example set method
+    public void setListing_id(ObjectId listing_id) {
+        this.listing_id = listing_id;
+    }
+    // add set methods here
 }
