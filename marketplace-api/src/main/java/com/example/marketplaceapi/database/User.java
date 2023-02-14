@@ -76,5 +76,22 @@ public class User {
 
 
 
+    // example get method
+    public ObjectId getUser_id() {
+        return user_id;
+    }
+    // add get methods here
+
+
+
+
+
+    // example set method
+    public void setUser_id(ObjectId user_id) {
+        this.user_id = user_id;
+    }
+    // add set methods here
+
+
 
 }
