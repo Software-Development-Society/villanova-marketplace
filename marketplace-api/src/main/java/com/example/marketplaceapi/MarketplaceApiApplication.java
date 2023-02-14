@@ -50,15 +50,18 @@ public class MarketplaceApiApplication implements CommandLineRunner {
 			System.out.print(user.toString());
 		}
 
+		System.out.println();
 		System.out.println("Active Listings: ");
 		for (ActiveListing activeListing : activeListingRepository.findAll()){
 			System.out.print(activeListing.toString());
 		}
 
+		System.out.println();
 		System.out.println("Completed Listings: ");
 		for (CompletedListing completedListing : completedListingRepository.findAll()){
 			System.out.print(completedListing.toString());
 		}
+		System.out.println();
 	}
 
 }
