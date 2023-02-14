@@ -78,4 +78,21 @@ public class ActiveListing {
         this.condition = condition;
         this.dateAdded = dateAdded;
     }
+
+    // example get method
+
+    public ObjectId getListing_id() {
+        return listing_id;
+    }
+
+    // add other get methods here
+
+
+
+    // example set method
+
+    public void setListing_id(ObjectId listing_id) {
+        this.listing_id = listing_id;
+    }
+    // add other set methods here
 }
