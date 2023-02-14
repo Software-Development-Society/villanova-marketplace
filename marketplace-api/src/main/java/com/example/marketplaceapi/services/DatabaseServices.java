@@ -15,6 +15,7 @@ public class DatabaseServices {
 //
 //        }
 //        // if it gets here there are big problems
+//        System.out.println("There is no student with id: " +user_id);
 //        return new Student();
 //    }
 
