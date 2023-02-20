@@ -1,7 +1,7 @@
 package com.example.marketplaceapi;
 
 import com.example.marketplaceapi.database.*;
-import org.apache.catalina.User;
+import com.example.marketplaceapi.database.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
