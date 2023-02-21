@@ -10,14 +10,13 @@ import java.util.List;
 
 public class DatabaseServices {
 
+
     public List<User> getAllUsers(){
         List<User> users = new ArrayList<User>();
 
         for(User user : MarketplaceApiApplication.visableUserRepo.findAll()){
-            System.out.println(user.toString());
+            users.add(user);
         }
-
-
         return users;
     }
 
