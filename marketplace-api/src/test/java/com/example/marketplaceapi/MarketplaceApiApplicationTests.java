@@ -14,7 +14,6 @@ class MarketplaceApiApplicationTests {
 	@Test
 	void testGetAllUsers(){
 		DatabaseServices dBServices = new DatabaseServices();
-		
 	}
 
 }
