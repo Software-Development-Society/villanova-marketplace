@@ -1,6 +1,24 @@
 package com.example.marketplaceapi.services;
 
+import com.example.marketplaceapi.MarketplaceApiApplication;
+
+import com.example.marketplaceapi.database.User;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseServices {
+
+
+    public static List<User> getAllUsers(){
+        List<User> users = new ArrayList<User>();
+
+        for(User user : MarketplaceApiApplication.visableUserRepo.findAll()){
+            users.add(user);
+        }
+        return users;
+    }
 
 
 

@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class MarketplaceApiApplication implements CommandLineRunner {
 	// collections and variables
@@ -42,7 +43,6 @@ public class MarketplaceApiApplication implements CommandLineRunner {
 		visableUserRepo = userRepository;
 		visableActiveListingRepo = activeListingRepository;
 		visableCompletedListingRepo = completedListingRepository;
-
 
 
 		System.out.println("Users: ");
