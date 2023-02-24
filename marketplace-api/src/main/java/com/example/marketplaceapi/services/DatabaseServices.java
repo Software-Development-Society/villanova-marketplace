@@ -34,11 +34,23 @@ public class DatabaseServices {
 
 
 
+    /*
+    This method is used to return a list of all users that are present in the database
+    input -> no input
+    output -> a List<User> containing all users present in the database
+     */
     public static List<User> getAllUsers(){
 
         return new ArrayList<>(MarketplaceApiApplication.visableUserRepo.findAll());
     }
 
+
+    /*
+    This method is used to retrieve a specific user from the database by user_id
+    input -> (ObjectId) user_id that is the users id in the db
+    output -> User that is the user corresponding with that id
+    Exception -> throws GetUserException when the wanted user_id is not present in the database
+     */
     public static User getUser(ObjectId user_id) throws GetUserException {
         for (User user : MarketplaceApiApplication.visableUserRepo.findAll()) {
             if (user.getUser_id().equals(user_id)) {
