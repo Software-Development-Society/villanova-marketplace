@@ -8,6 +8,7 @@ import com.example.marketplaceapi.database.User;
 import com.example.marketplaceapi.exceptions.GetActiveListingException;
 import com.example.marketplaceapi.exceptions.GetCompletedListingException;
 import com.example.marketplaceapi.exceptions.GetUserException;
+import com.example.marketplaceapi.exceptions.UserException;
 import org.bson.types.ObjectId;
 
 
@@ -69,16 +70,27 @@ public class DatabaseServices {
         throw new GetActiveListingException("Active listing with id: " +listing_id+ " does not exist in the database.");
     }
 
-    public static void saveUser(User user){
+    /**
+     *
+     * @param user -> user obect containing the user that is to be saved
+     * returns -> void
+     * @throws UserException -> exception occurs if there is an issue saving the user.
+     */
+    public static void saveUser(User user) throws UserException {
         try {
             MarketplaceApiApplication.visableUserRepo.save(user);
         }
         catch (Exception e) {
             e.printStackTrace();
-            throw e;
+            throw new UserException("Issue Saving user: " +user.toString());
         }
     }
 
+    /**
+     * @param listing_id -> ObjectId containing a completed listing that is to be retrieved
+     * @return -> a completed listing corresponding with the given listing_id
+     * @throws GetCompletedListingException -> throws exception if listing is not present in the database.
+     */
     public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
         for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
             if(completedListing.getListing_id().equals(listing_id)){
@@ -90,7 +102,7 @@ public class DatabaseServices {
 
 
 
-    /*
+    /**
     This method is used to delete a specific listing from the database
     input -> (ObjectId) listing_id that is the users id in the db
     output -> void
