@@ -61,6 +61,12 @@ public class DatabaseServices {
         throw new GetUserException("User with id: " +user_id+ " does not exist in the database.");
     }
 
+    /**
+     *
+     * @param listing_id -> ObjectId containing the listing_id for the user that is wanted
+     * @return -> returns the active listing corresponding with that listing_id
+     * @throws GetActiveListingException -> throws exception if listing does not exist
+     */
     public static ActiveListing getActiveListing(ObjectId listing_id) throws GetActiveListingException {
         for (ActiveListing activeListing : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
             if (activeListing.getListing_id().equals(listing_id)) {
