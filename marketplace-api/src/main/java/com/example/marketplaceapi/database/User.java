@@ -115,9 +115,32 @@ public class User {
     public void setUser_id(ObjectId user_id) {
         this.user_id = user_id;
     }
-    // add set methods here
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public void setClassYear(int classYear) {
+        this.classYear = classYear;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setWishList(ArrayList<ObjectId> wishList) {
+        this.wishList = wishList;
+    }
+
+    public void setRegistrationComplete(boolean registrationComplete) {
+        this.registrationComplete = registrationComplete;
+    }
 }
