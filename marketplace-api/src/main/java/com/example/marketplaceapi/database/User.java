@@ -35,10 +35,6 @@ public class User {
     private boolean registrationComplete;
 
 
-
-
-
-
     public User(){
 
     }
@@ -74,7 +70,43 @@ public class User {
         this.wishList = wishList;
     }
 
+    public ObjectId getUser_id()
+    {
+        return user_id;
+    }
 
+    public String getFirstName()
+    {
+        return firstName;
+    }
 
+    public String getLastName()
+    {
+        return lastName;
+    }
 
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public int getClassYear()
+    {
+        return classYear;
+    }
+
+    public String getMajor()
+    {
+        return major;
+    }
+
+    public ArrayList<ObjectId> getWishList()
+    {
+        return wishList;
+    }
+
+    public boolean isRegistrationComplete()
+    {
+        return registrationComplete;
+    }
 }
