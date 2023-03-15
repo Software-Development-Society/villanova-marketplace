@@ -78,6 +78,7 @@ public class User {
 
     // example get method
     public ObjectId getUser_id() {
+
         return user_id;
     }
     // add get methods here
@@ -114,8 +115,23 @@ public class User {
     // example set method
     public void setUser_id(ObjectId user_id) {
         this.user_id = user_id;
+
     }
     // add set methods here
+
+
+    //Sai Kuchulakanti User toString method
+    public String toString(User person) {
+        String str = "";
+        int lastIndex = wishList.size() -1;
+        str = (" User: " + person.firstName + " " + person.lastName + "\nClass Year: " + person.classYear + "\nMajor: " + person.classYear + "\nEmail: " + person.email);
+        str += ("\n" + firstName + " " + lastName + "'s WishList: " );
+        for (int i = 0; i < wishList.size() - 1; i++) {
+            str += (wishList.get(i) + ", ");
+        }
+        str += (wishList.get(lastIndex) + " ");
+        return str;
+    }
 
 
 
