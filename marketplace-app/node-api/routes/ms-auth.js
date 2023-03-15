@@ -16,7 +16,7 @@ const router = express.Router();
 
 passport.use(new MicrosoftStrategy({
   clientID: "25edda00-5ff3-4300-8ad5-4674943afe76",
-  clientSecret: "5X78Q~otkD4H_6DvpXONFx1VCk9zuZ1Im311Tcxa",
+  clientSecret: "3Nm8Q~RbqbwAG_DhBBOFbeDqFUi31KsG2DubRcPm",
   callbackURL: "http://localhost:5000/auth/ms",
   scope: ['user.read'],
 },
