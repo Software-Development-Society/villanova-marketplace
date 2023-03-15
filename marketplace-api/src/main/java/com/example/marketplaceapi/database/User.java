@@ -83,14 +83,40 @@ public class User {
     // add get methods here
 
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public int getClassYear() {
+        return classYear;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public ArrayList<ObjectId> getWishList() {
+        return wishList;
+    }
+
+    public boolean isRegistrationComplete() {
+        return registrationComplete;
+    }
 
     // example set method
     public void setUser_id(ObjectId user_id) {
         this.user_id = user_id;
     }
     // add set methods here
+
 
 
 
