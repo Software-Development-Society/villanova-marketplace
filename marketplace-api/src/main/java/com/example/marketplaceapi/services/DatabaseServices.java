@@ -3,6 +3,7 @@ package com.example.marketplaceapi.services;
 import com.example.marketplaceapi.MarketplaceApiApplication;
 
 import com.example.marketplaceapi.database.User;
+import org.bson.types.ObjectId;
 
 
 import java.util.ArrayList;
@@ -18,6 +19,17 @@ public class DatabaseServices {
             users.add(user);
         }
         return users;
+    }
+
+    public static User getUser (ObjectId user_id) {
+        ObjectId target = user_id;
+        for (User user : MarketplaceApiApplication.visableUserRepo.findAll()) {
+            if (user.getUser_id().equals(user_id)) {
+                return user;
+            }
+        }
+        System.out.println("User not in database.");
+        return new User();
     }
 
 
