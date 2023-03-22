@@ -92,4 +92,55 @@ public class CompletedListing {
         this.listing_id = listing_id;
     }
     // add set methods here
+    public void setTransaction_id(ObjectId transaction_id) {
+        this.transaction_id = transaction_id;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setPictures(ArrayList<Binary> pictures) {
+        this.pictures = pictures;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void setSeller_id(ObjectId seller_id) {
+        this.seller_id = seller_id;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setSoldToId(ObjectId soldToId) {
+        this.soldToId = soldToId;
+    }
+
+    public void setDateSold(Date dateSold) {
+        this.dateSold = dateSold;
+    }
 }
