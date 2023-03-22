@@ -2,7 +2,9 @@ package com.example.marketplaceapi.services;
 
 import com.example.marketplaceapi.MarketplaceApiApplication;
 
+import com.example.marketplaceapi.database.ActiveListing;
 import com.example.marketplaceapi.database.User;
+import com.example.marketplaceapi.exceptions.GetActiveListingException;
 import org.bson.types.ObjectId;
 
 
@@ -32,6 +34,18 @@ public class DatabaseServices {
         return new User();
     }
 
+    public static void deleteActiveListing (ObjectId listing_id) throws GetActiveListingException {
+        MarketplaceApiApplication.visableActiveListingRepo.delete(getActiveListing(listing_id));
+    }
+
+    public static ActiveListing getActiveListing (ObjectId listing_id) throws GetActiveListingException {
+        for (ActiveListing id : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
+            if (id.getListing_id().equals(listing_id)) {
+                return id;
+            } else throw new GetActiveListingException("Listing not found.");
+        }
+        return new ActiveListing();
+    }
 
 
 //    // EXAMPLE METHOD TO GET STUDENT FROM DATABASE
