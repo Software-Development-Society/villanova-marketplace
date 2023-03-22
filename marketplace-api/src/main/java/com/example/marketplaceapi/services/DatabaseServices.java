@@ -119,14 +119,7 @@ public class DatabaseServices {
 
 
 
-    public static void saveUser(User user){
-            try {
-            MarketplaceApiApplication.visableUserRepo.save(user);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-    }
+
 
 
 
