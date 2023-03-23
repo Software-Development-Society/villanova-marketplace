@@ -7,6 +7,7 @@ import com.example.marketplaceapi.database.CompletedListing;
 import com.example.marketplaceapi.database.User;
 import com.example.marketplaceapi.exceptions.GetActiveListingException;
 import com.example.marketplaceapi.exceptions.GetCompletedListingException;
+import com.example.marketplaceapi.exceptions.GetUserException;
 import org.bson.types.ObjectId;
 
 
@@ -21,21 +22,20 @@ public class DatabaseServices {
         return new ArrayList<>(MarketplaceApiApplication.visableUserRepo.findAll());
     }
 
-    public static User getUser (ObjectId user_id) {
+    public static User getUser(ObjectId user_id) throws GetUserException {
         for (User user : MarketplaceApiApplication.visableUserRepo.findAll()) {
             if (user.getUser_id().equals(user_id)) {
                 return user;
             }
         }
-        System.out.println("User not in database.");
-        return new User();
+        throw new GetUserException("User with id: " +user_id+ " does not exist in the database.");
     }
 
     public static void deleteActiveListing (ObjectId listing_id) throws GetActiveListingException {
         MarketplaceApiApplication.visableActiveListingRepo.delete(getActiveListing(listing_id));
     }
 
-    public static ActiveListing getActiveListing (ObjectId listing_id) throws GetActiveListingException {
+    public static ActiveListing getActiveListing(ObjectId listing_id) throws GetActiveListingException {
         for (ActiveListing activeListing : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
             if (activeListing.getListing_id().equals(listing_id)) {
                 return activeListing;
