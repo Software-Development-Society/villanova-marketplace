@@ -33,7 +33,6 @@ public class TestController {
         // takes a JSON string as an input parses the string and gets the necessary elements
         Object obj = new JSONParser().parse(input);
         JSONObject jo = (JSONObject) obj;
-        String result = (String) jo.get("user_id");
-        return result;
+        return (String) jo.get("user_id");
     }
 }
