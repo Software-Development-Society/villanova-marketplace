@@ -3,8 +3,10 @@ package com.example.marketplaceapi.services;
 import com.example.marketplaceapi.MarketplaceApiApplication;
 
 import com.example.marketplaceapi.database.ActiveListing;
+import com.example.marketplaceapi.database.CompletedListing;
 import com.example.marketplaceapi.database.User;
 import com.example.marketplaceapi.exceptions.GetActiveListingException;
+import com.example.marketplaceapi.exceptions.GetCompletedListingException;
 import org.bson.types.ObjectId;
 
 
@@ -34,12 +36,12 @@ public class DatabaseServices {
     }
 
     public static ActiveListing getActiveListing (ObjectId listing_id) throws GetActiveListingException {
-        for (ActiveListing id : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
-            if (id.getListing_id().equals(listing_id)) {
-                return id;
-            } else throw new GetActiveListingException("Listing not found.");
+        for (ActiveListing activeListing : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
+            if (activeListing.getListing_id().equals(listing_id)) {
+                return activeListing;
+            }
         }
-        return new ActiveListing();
+        throw new GetActiveListingException("Active listing with id: " +listing_id+ " does not exist in the database.");
     }
 
     public static void saveUser(User user){
@@ -49,6 +51,15 @@ public class DatabaseServices {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
+        for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
+            if(completedListing.getListing_id().equals(listing_id)){
+                return completedListing;
+            }
+        }
+        throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
     }
 
 
