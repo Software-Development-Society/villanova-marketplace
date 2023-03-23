@@ -15,16 +15,11 @@ public class DatabaseServices {
 
 
     public static List<User> getAllUsers(){
-        List<User> users = new ArrayList<User>();
 
-        for(User user : MarketplaceApiApplication.visableUserRepo.findAll()){
-            users.add(user);
-        }
-        return users;
+        return new ArrayList<>(MarketplaceApiApplication.visableUserRepo.findAll());
     }
 
     public static User getUser (ObjectId user_id) {
-        ObjectId target = user_id;
         for (User user : MarketplaceApiApplication.visableUserRepo.findAll()) {
             if (user.getUser_id().equals(user_id)) {
                 return user;
@@ -46,170 +41,6 @@ public class DatabaseServices {
         }
         return new ActiveListing();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static void saveUser(User user){
         try {
