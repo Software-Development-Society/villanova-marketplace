@@ -85,7 +85,57 @@ public class CompletedListing {
     // add get methods here
 
 
+    public ObjectId getTransaction_id() {
+        return transaction_id;
+    }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public ArrayList<Binary> getPictures() {
+        return pictures;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public ObjectId getSeller_id() {
+        return seller_id;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public ObjectId getSoldToId() {
+        return soldToId;
+    }
+
+    public Date getDateSold() {
+        return dateSold;
+    }
 
     // example set method
     public void setListing_id(ObjectId listing_id) {
@@ -143,4 +193,26 @@ public class CompletedListing {
     public void setDateSold(Date dateSold) {
         this.dateSold = dateSold;
     }
+
+
+    @Override
+    public String toString() {
+        return "CompletedListing{" +
+                "listing_id=" + listing_id +
+                ", transaction_id=" + transaction_id +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", pictures=" + pictures +
+                ", sellerName='" + sellerName + '\'' +
+                ", seller_id=" + seller_id +
+                ", tags=" + tags +
+                ", views=" + views +
+                ", condition='" + condition + '\'' +
+                ", dateAdded=" + dateAdded +
+                ", soldToId=" + soldToId +
+                ", dateSold=" + dateSold +
+                '}';
+    }
+
 }

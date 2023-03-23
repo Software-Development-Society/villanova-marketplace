@@ -190,4 +190,5 @@ public class ActiveListing {
                 ", dateAdded=" + dateAdded +
                 '}';
     }
+
 }
