@@ -118,22 +118,46 @@ public class User {
 
     }
     // add set methods here
-
-
-    //Sai Kuchulakanti User toString method
-    public String toString(User person) {
-        String str = "";
-        int lastIndex = wishList.size() -1;
-        str = (" User: " + person.firstName + " " + person.lastName + "\nClass Year: " + person.classYear + "\nMajor: " + person.classYear + "\nEmail: " + person.email);
-        str += ("\n" + firstName + " " + lastName + "'s WishList: " );
-        for (int i = 0; i < wishList.size() - 1; i++) {
-            str += (wishList.get(i) + ", ");
-        }
-        str += (wishList.get(lastIndex) + " ");
-        return str;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setClassYear(int classYear) {
+        this.classYear = classYear;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setWishList(ArrayList<ObjectId> wishList) {
+        this.wishList = wishList;
+    }
+
+    public void setRegistrationComplete(boolean registrationComplete) {
+        this.registrationComplete = registrationComplete;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", classYear=" + classYear +
+                ", major='" + major + '\'' +
+                ", wishList=" + wishList +
+                '}';
+    }
 
 
 }
