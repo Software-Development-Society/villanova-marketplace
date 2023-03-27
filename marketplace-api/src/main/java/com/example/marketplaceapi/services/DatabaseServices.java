@@ -50,6 +50,7 @@ public class DatabaseServices {
         }
         catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
