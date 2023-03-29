@@ -63,6 +63,21 @@ public class DatabaseServices {
         throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
     }
 
+    /**
+     *
+     * @param user The User Object that should be deleted
+     */
+    public static void deleteUser(User user) throws GetUserException{
+        try {
+            MarketplaceApiApplication.visableUserRepo.delete(user);
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new GetUserException("The User " + " " + user + " " + " was not successfully deleted.");
+        }
+    }
+
 
 
 //    // EXAMPLE METHOD TO GET STUDENT FROM DATABASE
