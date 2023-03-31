@@ -34,7 +34,7 @@ public class DatabaseServices {
 
 
 
-    /*
+    /**
     This method is used to return a list of all users that are present in the database
     input -> no input
     output -> a List<User> containing all users present in the database
@@ -45,7 +45,7 @@ public class DatabaseServices {
     }
 
 
-    /*
+    /**
     This method is used to retrieve a specific user from the database by user_id
     input -> (ObjectId) user_id that is the users id in the db
     output -> User that is the user corresponding with that id
@@ -58,10 +58,6 @@ public class DatabaseServices {
             }
         }
         throw new GetUserException("User with id: " +user_id+ " does not exist in the database.");
-    }
-
-    public static void deleteActiveListing (ObjectId listing_id) throws GetActiveListingException {
-        MarketplaceApiApplication.visableActiveListingRepo.delete(getActiveListing(listing_id));
     }
 
     public static ActiveListing getActiveListing(ObjectId listing_id) throws GetActiveListingException {
@@ -90,6 +86,25 @@ public class DatabaseServices {
             }
         }
         throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
+    }
+
+
+
+    /*
+    This method is used to delete a specific listing from the database
+    input -> (ObjectId) listing_id that is the users id in the db
+    output -> void
+    Exception -> throws getActiveListingException when the wanted listing_id is not present in the database
+     */
+    public static void deleteActiveListing (ObjectId listing_id) throws GetActiveListingException {
+        try{
+            MarketplaceApiApplication.visableActiveListingRepo.delete(getActiveListing(listing_id));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            throw new GetActiveListingException("Listing with id: " +listing_id+ " was not successfully deleted.");
+        }
+
     }
 
     /**
