@@ -97,14 +97,7 @@ public class DatabaseServices {
      * @return -> a completed listing corresponding with the given listing_id
      * @throws GetCompletedListingException -> throws exception if listing is not present in the database.
      */
-    public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
-        for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
-            if(completedListing.getListing_id().equals(listing_id)){
-                return completedListing;
-            }
-        }
-        throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
-    }
+
 
 
 
@@ -138,6 +131,15 @@ public class DatabaseServices {
             e.printStackTrace();
             throw new GetUserException("The User " + " " + user + " " + " was not successfully deleted.");
         }
+    }
+
+    public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
+        for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
+            if(completedListing.getListing_id().equals(listing_id)){
+                return completedListing;
+            }
+        }
+        throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
     }
 
 
