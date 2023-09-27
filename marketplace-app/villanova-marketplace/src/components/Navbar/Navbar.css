@@ -1,138 +1,21 @@
-.root {
-  flexgrow: 1;
+#navbar-container {
+  height: 100px;
   width: 100vw;
-  margin: 0;
-  padding: 0;
-  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 100;
 }
 
-.AppBar {
-  margin: 0;
-}
-
-.toolbar {
+/* #appbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-}
-
-.wrapperDiv {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.search {
-  max-width: 350px;
-  padding: 0;
-}
-
-.searchIcon {
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  position: absolute;
-  right: 0;
-}
-
-.inputInput::placeholder {
-  text-align: center;
-}
-
-
-.menuButton {
-  margin-right: 8px;
-}
-
-.title {
-  flexgrow: 1;
-  display: none;
-}
-
-@media screen and (min-width: 600px) {
-  .title {
-    display: block;
-  }
-}
-
-.search {
-  position: relative;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.15);
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  margin-left: 0;
   width: 100%;
-}
-
-.search:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-}
-
-.searchIcon {
-  padding: 0 16px;
   height: 100%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.inputRoot {
-  color: inherit;
-}
-
-.inputInput {
-  padding: 6px 6px 6px 0;
-  padding-left: calc(1em + 32px);
-  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  width: 100%;
-}
-
-@media screen and (min-width: 600px) {
-  .inputInput {
-    width: 12ch;
-  }
-
-  .inputInput:focus {
-    width: 20ch;
-  }
-}
-
-.navLinks {
-  display: none;
-}
-
-@media screen and (min-width: 960px) {
-  .navLinks {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 300px;
-  }
-}
-
-.mobileMenu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #3f51b5;
-  padding: 16px;
-  position: absolute;
-  top: 64px;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-@media screen and (min-width: 960px) {
-  .mobileMenu {
-    display: none;
-  }
-}
+} */

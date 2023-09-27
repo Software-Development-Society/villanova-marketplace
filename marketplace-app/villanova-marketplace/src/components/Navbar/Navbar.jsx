@@ -1,96 +1,119 @@
-import React, { useState } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const NavbarContainer = styled.div`
+  background: #333;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
+`;
 
-  const handleMobileMenuOpen = () => {
-    setMobileMenuOpen(true);
-  };
+const Logo = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+`;
 
-  const handleMobileMenuClose = () => {
-    setMobileMenuOpen(false);
+const NavLinks = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const NavLink = styled.a`
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #FF00FF; /* Change color on hover */
+  }
+`;
+
+const MobileMenuButton = styled.div`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background: #333;
+  padding: 10px;
+  border-radius: 5px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  &:hover {
+    color: #FF00FF; /* Change color on hover */
+  }
+`;
+
+const MobileMenuItem = styled.a`
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const Navbar = () => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Add this line
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <div className="root">
-      <AppBar position="static" className="AppBar">
-        <Toolbar className="toolbar">
-          <div className="search">
-            <div className="searchIcon">
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: "inputRoot",
-                input: "inputInput",
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
-          <div className="wrapperDiv">
-            <div className="navLinks">
-              <Button color="inherit" component={Link} to="/">
-                Home
-              </Button>
-              <Button color="inherit" component={Link} to="/marketplace">
-                Marketplace
-              </Button>
-              <Button color="inherit" component={Link} to="/account">
-                Account
-              </Button>
-            </div>
-            <IconButton
-              edge="end"
-              className="menuButton"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleMobileMenuOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <div
-        className="mobileMenu"
-        style={{ display: mobileMenuOpen ? "flex" : "none" }}
-      >
-        <Button
-          color="inherit"
-          component={Link}
-          to="/"
-          onClick={handleMobileMenuClose}
-        >
-          Home
-        </Button>
-        <Button
-          color="inherit"
-          component={Link}
-          to="/marketplace"
-          onClick={handleMobileMenuClose}
-        >
-          Marketplace
-        </Button>
-        <Button
-          color="inherit"
-          component={Link}
-          to="/account"
-          onClick={handleMobileMenuClose}
-        >
-          Account
-        </Button>
-      </div>
-    </div>
+    <NavbarContainer>
+      <Logo>Villanova Marketplace</Logo>
+      <NavLinks>
+        {isLoggedIn ? (
+          <>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/about">About</NavLink>
+            <NavLink href="/sell">Sell</NavLink>
+            <NavLink href="/logout">Logout</NavLink>
+          </>
+        ) : (
+          <NavLink href="/login">Login</NavLink>
+        )}
+      </NavLinks>
+      <MobileMenuButton onClick={toggleMobileMenu}>☰</MobileMenuButton>
+      <MobileMenu isOpen={isMobileMenuOpen}>
+        {isLoggedIn ? (
+          <>
+            <MobileMenuItem href="/">Home</MobileMenuItem>
+            <MobileMenuItem href="/about">About</MobileMenuItem>
+            <MobileMenuItem href="/sell">Sell</MobileMenuItem>
+            <MobileMenuItem href="/logout">Logout</MobileMenuItem>
+          </>
+        ) : (
+          <MobileMenuItem href="/login">Login</MobileMenuItem>
+        )}
+      </MobileMenu>
+    </NavbarContainer>
   );
-}
+};
+
+export default Navbar;
