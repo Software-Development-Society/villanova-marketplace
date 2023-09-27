@@ -119,16 +119,6 @@ public class DatabaseServices {
             throw new DatabaseException("Issue deleting active listing: " +pActiveListing.toString());
         }
     }
-
-    public static void deleteCompletedListing(final CompletedListing pCompletedListing) throws DatabaseException {
-        try {
-            MarketplaceApiApplication.visableCompletedListingRepo.delete(pCompletedListing);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new DatabaseException("Issue deleting completed listing: " +pCompletedListing.toString());
-        }
-    }
     /**
     This method is used to return a list of all users that are present in the database
     input -> no input
