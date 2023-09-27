@@ -133,6 +133,12 @@ public class DatabaseServices {
         }
     }
 
+    /**
+     *
+     * @param listing_id the listing id of a completed listing
+     * @return the completed listing of the object with the listing id
+     * @throws GetCompletedListingException when there isn't a Completed listing object with the listing id input
+     */
     public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
         for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
             if(completedListing.getListing_id().equals(listing_id)){
@@ -141,6 +147,8 @@ public class DatabaseServices {
         }
         throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
     }
+
+
 
 
 
