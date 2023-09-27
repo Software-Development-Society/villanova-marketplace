@@ -5,10 +5,7 @@ import com.example.marketplaceapi.MarketplaceApiApplication;
 import com.example.marketplaceapi.database.ActiveListing;
 import com.example.marketplaceapi.database.CompletedListing;
 import com.example.marketplaceapi.database.User;
-import com.example.marketplaceapi.exceptions.GetActiveListingException;
-import com.example.marketplaceapi.exceptions.GetCompletedListingException;
-import com.example.marketplaceapi.exceptions.GetUserException;
-import com.example.marketplaceapi.exceptions.UserException;
+import com.example.marketplaceapi.exceptions.*;
 import org.bson.types.ObjectId;
 
 
@@ -137,6 +134,20 @@ public class DatabaseServices {
         catch (Exception e) {
             e.printStackTrace();
             throw new GetUserException("The User " + " " + user + " " + " was not successfully deleted.");
+        }
+    }
+
+    /**
+     *
+     * @param pCompetedListing the completedListing object input
+     * @throws CompletedListingException throws an exception if the completedListing object could not successfully be saved
+     */
+    public static void saveCompletedListingInDB(final CompletedListing pCompetedListing) throws CompletedListingException {
+        try {
+            MarketplaceApiApplication.visableCompletedListingRepo.save(pCompetedListing);
+        }
+        catch (Exception e) {
+            throw new CompletedListingException("The Listing " + " " + pCompetedListing + " " + " could not be successfully saved in the Database");
         }
     }
 
