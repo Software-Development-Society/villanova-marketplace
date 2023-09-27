@@ -5,15 +5,13 @@ import com.example.marketplaceapi.MarketplaceApiApplication;
 import com.example.marketplaceapi.database.ActiveListing;
 import com.example.marketplaceapi.database.CompletedListing;
 import com.example.marketplaceapi.database.User;
-import com.example.marketplaceapi.exceptions.GetActiveListingException;
-import com.example.marketplaceapi.exceptions.GetCompletedListingException;
-import com.example.marketplaceapi.exceptions.GetUserException;
-import com.example.marketplaceapi.exceptions.UserException;
+import com.example.marketplaceapi.exceptions.*;
 import org.bson.types.ObjectId;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DatabaseServices {
 
@@ -32,9 +30,105 @@ public class DatabaseServices {
 //        System.out.println("There is no student with id: " +user_id);
 //        return new Student();
 //    }
+    
+    /**
+     *
+     * @param pUserId
+     * @return User with the correct id or an empty Optional
+     */
+    public static Optional<User> findUserById(final ObjectId pUserId){
+        return MarketplaceApiApplication.visableUserRepo
+                .findAll()
+                .stream()
+                .filter(user -> user.getUser_id().equals(pUserId))
+                .findFirst();
+    }
 
+    /**
+     *
+     * @param pActiveListingId
+     * @return ActiveListing with the correct id or an empty Optional
+     */
+    public static Optional<ActiveListing> findActiveListingById(final ObjectId pActiveListingId){
+        return MarketplaceApiApplication.visableActiveListingRepo
+                .findAll()
+                .stream()
+                .filter(activeListing -> activeListing.getListing_id().equals(pActiveListingId))
+                .findFirst();
+    }
 
+    /**
+     *
+     * @param pCompletedListing
+     * @return CompletedListing with the correct id or an empty Optional
+     */
+    public static Optional<CompletedListing> findCompletedListingById(final ObjectId pCompletedListing){
+        return MarketplaceApiApplication.visableCompletedListingRepo
+                .findAll()
+                .stream()
+                .filter(completedListing -> completedListing.getListing_id().equals(pCompletedListing))
+                .findFirst();
+    }
 
+    public static void saveUser(final User pUser) throws DatabaseException{
+        try {
+            MarketplaceApiApplication.visableUserRepo.save(pUser);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            throw new DatabaseException("Issue saving user: " +pUser.toString());
+        }
+    }
+
+    public static void saveActiveListing(final ActiveListing pActiveListing) throws DatabaseException {
+        try {
+            MarketplaceApiApplication.visableActiveListingRepo.save(pActiveListing);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue saving active listing: " +pActiveListing.toString());
+        }
+    }
+
+    public static void saveCompletedListing(final CompletedListing pCompletedListing) throws DatabaseException {
+        try {
+            MarketplaceApiApplication.visableCompletedListingRepo.save(pCompletedListing);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue saving completed listing: " +pCompletedListing.toString());
+        }
+    }
+
+    public static void deleteUser(final User pUser) throws DatabaseException {
+        try {
+            MarketplaceApiApplication.visableUserRepo.delete(pUser);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue deleting user: " +pUser.toString());
+        }
+    }
+
+    public static void deleteActiveListing(final ActiveListing pActiveListing) throws DatabaseException {
+        try {
+            MarketplaceApiApplication.visableActiveListingRepo.delete(pActiveListing);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue deleting active listing: " +pActiveListing.toString());
+        }
+    }
+
+    public static void deleteCompletedListing(final CompletedListing pCompletedListing) throws DatabaseException {
+        try {
+            MarketplaceApiApplication.visableCompletedListingRepo.delete(pCompletedListing);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue deleting completed listing: " +pCompletedListing.toString());
+        }
+    }
     /**
     This method is used to return a list of all users that are present in the database
     input -> no input
@@ -44,109 +138,4 @@ public class DatabaseServices {
 
         return new ArrayList<>(MarketplaceApiApplication.visableUserRepo.findAll());
     }
-
-
-    /**
-    This method is used to retrieve a specific user from the database by user_id
-    input -> (ObjectId) user_id that is the users id in the db
-    output -> User that is the user corresponding with that id
-    Exception -> throws GetUserException when the wanted user_id is not present in the database
-     */
-    public static User getUser(ObjectId user_id) throws GetUserException {
-        for (User user : MarketplaceApiApplication.visableUserRepo.findAll()) {
-            if (user.getUser_id().equals(user_id)) {
-                return user;
-            }
-        }
-        throw new GetUserException("User with id: " +user_id+ " does not exist in the database.");
-    }
-
-    /**
-     *
-     * @param listing_id -> ObjectId containing the listing_id for the user that is wanted
-     * @return -> returns the active listing corresponding with that listing_id
-     * @throws GetActiveListingException -> throws exception if listing does not exist
-     */
-    public static ActiveListing getActiveListing(ObjectId listing_id) throws GetActiveListingException {
-        for (ActiveListing activeListing : MarketplaceApiApplication.visableActiveListingRepo.findAll()) {
-            if (activeListing.getListing_id().equals(listing_id)) {
-                return activeListing;
-            }
-        }
-        throw new GetActiveListingException("Active listing with id: " +listing_id+ " does not exist in the database.");
-    }
-
-    /**
-     *
-     * @param user -> user obect containing the user that is to be saved
-     * returns -> void
-     * @throws UserException -> exception occurs if there is an issue saving the user.
-     */
-    public static void saveUser(User user) throws UserException {
-        try {
-            MarketplaceApiApplication.visableUserRepo.save(user);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new UserException("Issue Saving user: " +user.toString());
-        }
-    }
-
-    /**
-     * @param listing_id -> ObjectId containing a completed listing that is to be retrieved
-     * @return -> a completed listing corresponding with the given listing_id
-     * @throws GetCompletedListingException -> throws exception if listing is not present in the database.
-     */
-    public static CompletedListing getCompletedListing(ObjectId listing_id) throws GetCompletedListingException {
-        for(CompletedListing completedListing : MarketplaceApiApplication.visableCompletedListingRepo.findAll()){
-            if(completedListing.getListing_id().equals(listing_id)){
-                return completedListing;
-            }
-        }
-        throw new GetCompletedListingException("Completed listing with id: " +listing_id+ " does not exist in the database.");
-    }
-
-
-
-    /**
-    This method is used to delete a specific listing from the database
-    input -> (ObjectId) listing_id that is the users id in the db
-    output -> void
-    Exception -> throws getActiveListingException when the wanted listing_id is not present in the database
-     */
-    public static void deleteActiveListing (ObjectId listing_id) throws GetActiveListingException {
-        try{
-            MarketplaceApiApplication.visableActiveListingRepo.delete(getActiveListing(listing_id));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            throw new GetActiveListingException("Listing with id: " +listing_id+ " was not successfully deleted.");
-        }
-
-    }
-
-    /**
-     *
-     * @param user The User Object that should be deleted
-     */
-    public static void deleteUser(User user) throws GetUserException{
-        try {
-            MarketplaceApiApplication.visableUserRepo.delete(user);
-        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new GetUserException("The User " + " " + user + " " + " was not successfully deleted.");
-        }
-    }
-
-
-
-
-
-
-
-
-
-
 }
