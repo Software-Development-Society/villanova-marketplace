@@ -3,9 +3,16 @@ import { Triangle } from "react-loader-spinner";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { MicrosoftLoginButton } from "react-social-login-buttons";
 import AuthContext from "../../context/auth-context";
+import SignUpPage from "../../components/SignUpPage/SignUpPage.jsx";
 
 const Login = (props) =>{
     const [isLoading, setIsLoading] = useState(false);
+
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
+    const openSignUpModal = () => {
+        setIsSignUpModalOpen(true);
+    }
     
     const loginHandler = () =>{
         setIsLoading(true);
@@ -92,13 +99,17 @@ const Login = (props) =>{
     }, [tokenParams, authCtx]);
     
     return(
-        <div className="login">
-            <div className="login-button">
-                {!isLoading ? <MicrosoftLoginButton onClick={loginHandler}></MicrosoftLoginButton> : <Triangle wrapperStyle={{justifyContent:'center'}} height='200' width='200' color='white'></Triangle>}
-                {failedAuth && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>You are not in the @villanova.edu domain and have not been authorized.<br></br><br></br>If this is an error, contact me using the button below.</p>}
-                {error && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>There has been an error, please try again.<br></br><br></br>If this continues, please contact me using the button below.</p>}
-                <p>{JSON.stringify(contextHolder)}</p>
-            </div>
+        // <div className="login">
+        //     <div className="login-button">
+        //         {!isLoading ? <MicrosoftLoginButton onClick={loginHandler}></MicrosoftLoginButton> : <Triangle wrapperStyle={{justifyContent:'center'}} height='200' width='200' color='white'></Triangle>}
+        //         {failedAuth && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>You are not in the @villanova.edu domain and have not been authorized.<br></br><br></br>If this is an error, contact me using the button below.</p>}
+        //         {error && <p variant="h6" sx={{width:"50vw", textAlign:"center", position:"absolute", right:"25%", color:"#ffcab1",fontFamily: "system-ui", fontWeight: "500",}}>There has been an error, please try again.<br></br><br></br>If this continues, please contact me using the button below.</p>}
+        //         <p>{JSON.stringify(contextHolder)}</p>
+        //     </div>
+        // </div>
+        <div>
+            <button onClick={openSignUpModal}>Open</button>
+            <SignUpPage isOpen={isSignUpModalOpen}/>
         </div>
     )
 }
