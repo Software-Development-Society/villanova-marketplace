@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.http.ResponseEntity;
 
 public class UserServices {
-    static JSONParser parser = new JSONParser();
+   private final static JSONParser parser = new JSONParser();
 
     public static ResponseEntity<String> createUser(final String pPayload) {
         JSONObject UserJSON;
@@ -20,7 +20,7 @@ public class UserServices {
         }
         catch (ParseException e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Invalid JSON");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
         User userToBeSaved;
