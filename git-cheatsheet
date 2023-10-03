@@ -1,0 +1,24 @@
+Git and GitHub Commands Cheatsheet
+To clone a repository
+git clone url from github
+
+When you sit down at your computer
+git pull
+
+When you are leaving your computer
+use the commits window on your text editor
+add and commit the files you changed
+got back to the terminal and git push
+
+When you want to create a new feature
+git switch -c name_of_branch
+git push -u name_of_branch
+
+When you want to get a branch that is on Github onto your local machine
+git checkout name_of_branch
+
+When you want to switch to a branch 
+git switch name_of_branch
+
+When you want an update on the current state of your branch
+git status
