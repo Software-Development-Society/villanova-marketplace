@@ -1,6 +1,7 @@
 package com.example.marketplaceapi.services;
 
 import com.example.marketplaceapi.database.ActiveListing;
+import com.example.marketplaceapi.exceptions.SvcException;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
@@ -26,7 +27,7 @@ public class JsonUtil {
             activeListing.setDateAdded((Date) Json.get("date"));
         }
         catch(Exception e) {
-            // throw new ActiveListing();
+            throw new SvcException("Unable to parse ActiveListing JSON");
         }
 
         return activeListing;
