@@ -128,4 +128,16 @@ public class DatabaseServices {
 
         return new ArrayList<>(MarketplaceApiApplication.visableUserRepo.findAll());
     }
+
+    // Jamey Denninger
+    public static void deleteCompletedListing (final CompletedListing pCompletedListing){
+        try{
+            MarketplaceApiApplication.visableUserRepo.findAll().delete(pCompletedListing);
+        }
+        catch (execption e) {
+            e.printStackTrace();
+            throw new DatabaseException("Issue deleting completed listing: " +pCompletedListing.toString());
+        }
+
+    }
 }
