@@ -14,7 +14,6 @@ public class JsonUtil {
         ActiveListing activeListing = new ActiveListing();
 
         try {
-            activeListing.setListing_id((ObjectId) Json.get("listing_id"));
             activeListing.setProductName((String) Json.get("productName"));
             activeListing.setDescription((String) Json.get("description"));
             activeListing.setPrice((int) Json.get("price"));
