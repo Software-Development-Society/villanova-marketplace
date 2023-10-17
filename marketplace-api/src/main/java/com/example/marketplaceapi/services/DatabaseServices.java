@@ -132,9 +132,9 @@ public class DatabaseServices {
     // Jamey Denninger
     public static void deleteCompletedListing (final CompletedListing pCompletedListing){
         try{
-            MarketplaceApiApplication.visableUserRepo.findAll().delete(pCompletedListing);
+            MarketplaceApiApplication.visableCompletedListingRepo.delete(pCompletedListing);
         }
-        catch (execption e) {
+        catch (Exception e) {
             e.printStackTrace();
             throw new DatabaseException("Issue deleting completed listing: " +pCompletedListing.toString());
         }
