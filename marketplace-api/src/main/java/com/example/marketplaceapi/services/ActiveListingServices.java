@@ -20,7 +20,7 @@ public class ActiveListingServices {
         }
         catch (ParseException e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
 
         ActiveListing activeListingToBeSaved;
@@ -30,7 +30,7 @@ public class ActiveListingServices {
         }
         catch (SvcException e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
 
         try{
@@ -38,9 +38,9 @@ public class ActiveListingServices {
         }
         catch (DatabaseException e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
-        return ResponseEntity.ok("User created successfully");
+        return ResponseEntity.status(200).body("ActiveListing created successfully");
     }
 
 }
